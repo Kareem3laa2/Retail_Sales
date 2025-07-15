@@ -15,5 +15,14 @@ with DAG(
     bash_command='docker exec retail_namenode \
                   hdfs dfs -mkdir -p /data/raw \
                   -put -f /data/Online_Retail.csv /data/raw',
-)
+   )
+
+    silver_layer = BashOperator(
+       task_id = "silver_layer",
+       bash_command = 'docker exec retail-spark-master \
+                       /opt/bitnami/spark/bin/spark-submit \
+                       --master spark://spark-master:7077 /opt/spark-apps/scripts/data_preparation.py'
+   )
+
+    upload_to_hdfs >> silver_layer
 

@@ -311,6 +311,8 @@ services:
       - SPARK_RPC_ENCRYPTION_ENABLED=no
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
+      - SPARK_MASTER_HOST=spark-master
+      - SPARK_MASTER_PORT=7077
     
     ports:
       - "7077:7077"
@@ -333,7 +335,7 @@ services:
     environment:
       - SPARK_MODE=worker
       - CORE_CONF_fs_defaultFS=hdfs://namenode:8020
-      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_MASTER_URL=spark://retail-spark-master:7077
       - SPARK_RPC_AUTHENTICATION_ENABLED=no
       - SPARK_RPC_ENCRYPTION_ENABLED=no
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
@@ -355,6 +357,9 @@ services:
       - SPARK_MASTER=spark://spark-master:7077
       - SPARK_DRIVER_MEMORY=2g
       - SPARK_EXECUTOR_MEMORY=2g
+      - SPARK_HOME=/usr/local/spark
+      - JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+
 
     volumes:
       - ./notebooks:/home/jovyan/work
