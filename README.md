@@ -1,6 +1,9 @@
-# 📈 Retail Sales Analytics Pipeline: Airflow, dbt & Docker Compose
+# 📈 Retail Sales Analytics Pipeline: Orchestrated with Airflow & dbt
 
-This project showcases a comprehensive **Data Engineering workflow** designed to ingest, transform, and model raw retail sales data. Leveraging **Apache Airflow** for robust orchestration and **dbt (Data Build Tool)** for modular SQL-based transformations, the pipeline constructs a structured data warehouse optimized for analytics. The entire environment is containerized using **Docker Compose** for easy setup and local development.
+This project delivers a production-ready **Data Engineering pipeline** that transforms raw retail sales data into analytics-ready insights. It combines the power of **Apache Airflow** for workflow orchestration and **dbt (Data Build Tool)** for modular, SQL-based transformations—built entirely within a containerized **Docker Compose** environment.
+
+The pipeline implements best practices in **modern data stack design**, including structured data modeling (star schema), automated scheduling, and end-to-end reproducibility. Ideal for both local development and cloud migration readiness.
+
 
 ---
 
@@ -22,9 +25,12 @@ This project aims to establish a robust and scalable data pipeline that transfor
 | Tool                      | Role                               |
 | ------------------------- | ---------------------------------- |
 | **Apache Airflow**        | Workflow orchestration             |
+| **Apache Spark**          | Data processing and Transformation |
+| **Hadoop HDFS**           | Acts as a datalake for (Bronze & Silver) | 
 | **dbt (Data Build Tool)** | SQL-based data transformations     |
 | **Docker Compose**        | Containerized development          |
 | **Snowflake/PostgreSQL**  | Data warehouse / target backend    |
+| **Microsoft PowerBI**     | Data Visualization                 |
 | **GitHub**                | Version control & CI/CD (optional) |
 
 ---
@@ -92,7 +98,7 @@ docker-compose up --build
 ### 4️⃣ Trigger the DAG
 
 - Open Airflow UI
-- Enable and trigger `dbt_transformation_dag`
+- Enable and trigger `retail_pipeline`
 
 ---
 

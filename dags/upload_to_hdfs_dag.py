@@ -7,7 +7,7 @@ with DAG(
     start_date=datetime(2025, 1, 1),
     schedule=None,
     catchup=False,
-    description="Upload local CSV to HDFS using bash script"
+    description="From local to Snowflake gold pipeline"
 ) as dag:
 
     upload_to_hdfs = BashOperator(
