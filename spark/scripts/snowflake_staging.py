@@ -1,3 +1,5 @@
+from dotenv import load_dotenv
+import os
 from pyspark.sql import SparkSession
 from pyspark.sql.types import (
     StructType, StructField,
@@ -27,13 +29,13 @@ df = spark.read.csv("hdfs://namenode:8020/data/silver/retail_cleaned.csv", heade
 
 df.write \
   .format("snowflake") \
-  .option("sfURL", "TRLIYPI-XK63730.snowflakecomputing.com") \
-  .option("sfUser", "KINGOOZ") \
-  .option("sfPassword", "055Hkhiahl@.com") \
-  .option("sfDatabase", "RETAIL_SALES") \
-  .option("sfSchema", "STAGING") \
-  .option("sfWarehouse", "COMPUTE_WH") \
-  .option("dbtable", "SILVER_DATA") \
-  .option("sfRole", "ACCOUNTADMIN") \
+  .option("sfURL", os.getenv("SNOWFLAKE_URL")) \
+  .option("sfUser", os.getenv("SNOWFLAKE_USER")) \
+  .option("sfPassword", os.getenv("SNOWFLAKE_PASSWORD")) \
+  .option("sfDatabase", os.getenv("SNOWFLAKE_DATABASE")) \
+  .option("sfSchema", os.getenv("SNOWFLAKE_SCHEMA")) \
+  .option("sfWarehouse", os.getenv("SNOWFLAKE_WAREHOUSE")) \
+  .option("dbtable", os.getenv("SNOWFLAKE_TABLE")) \
+  .option("sfRole", os.getenv("SNOWFLAKE_ROLE")) \
   .mode("overwrite") \
   .save()
